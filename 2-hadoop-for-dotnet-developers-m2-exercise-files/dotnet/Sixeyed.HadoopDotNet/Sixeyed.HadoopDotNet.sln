@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sixeyed.HadoopDotNet.Mapper", "Sixeyed.HadoopDotNet.Mapper\Sixeyed.HadoopDotNet.Mapper.csproj", "{E0FA0D60-C7B6-407E-A224-0AD8A4E61DA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sixeyed.HadoopDotNet.Reducer", "Sixeyed.HadoopDotNet.Reducer\Sixeyed.HadoopDotNet.Reducer.csproj", "{EF5D3B1E-9944-4599-9EA7-DB9C7CECBB59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0FA0D60-C7B6-407E-A224-0AD8A4E61DA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0FA0D60-C7B6-407E-A224-0AD8A4E61DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0FA0D60-C7B6-407E-A224-0AD8A4E61DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0FA0D60-C7B6-407E-A224-0AD8A4E61DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF5D3B1E-9944-4599-9EA7-DB9C7CECBB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF5D3B1E-9944-4599-9EA7-DB9C7CECBB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF5D3B1E-9944-4599-9EA7-DB9C7CECBB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF5D3B1E-9944-4599-9EA7-DB9C7CECBB59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

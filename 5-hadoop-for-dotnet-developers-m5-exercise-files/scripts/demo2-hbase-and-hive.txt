@@ -1,0 +1,45 @@
+
+/*
+
+# create the table definition in HBase, with one column family:
+create 'PostcodesRealtime', 'ac'
+
+# write a row:
+put 'PostcodesRealtime', 'key1', 'ac:code', '6B1'
+
+#reasit back:
+get 'PostcodesRealtime', 'key1'
+
+*/
+
+-- map the Hbase table in Hive, using the Postcode as the row key, and
+-- exposing two columns from the column family:
+CREATE EXTERNAL TABLE PostcodesRealtime
+(
+	Postcode STRING,
+	AreaClassificationCode STRING,
+	AreaClassificationDescription STRING
+)
+STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+WITH SERDEPROPERTIES
+(
+ "hbase.columns.mapping" = ":key,ac:code,ac:description"
+)
+TBLPROPERTIES
+(
+ "hbase.table.name" = "PostcodesRealtime"
+);
+
+
+-- use Hive for ETL, reading all rows from the HDFS table and inserting
+-- into the HBase table:
+INSERT OVERWRITE TABLE PostcodesRealtime
+SELECT Postcode3, OutputAreaClassificationCode, OutputAreaClassificationName
+FROM Postcodes
+WHERE Postcode3 IS NOT NULL;
+
+
+-- select single row from HBase table:
+SELECT *
+FROM PostcodesRealtime
+WHERE Postcode = 'ML6 6PY';

@@ -1,0 +1,9 @@
+REM Demo 4 - Bad input
+
+hadoop jar %HADOOP_HOME%\share\hadoop\tools\lib\hadoop-streaming-2.7.2.jar ^
+-files "file:/c:/dotnetcore,file:/c:/refdata" ^
+-mapper "dotnet dotnetcore/mapper.dll" ^
+-reducer "dotnet dotnetcore/reducer.dll" ^
+-combiner "dotnet dotnetcore/combiner.dll" ^
+-input /input-bad/* ^
+-output /output-m4-4

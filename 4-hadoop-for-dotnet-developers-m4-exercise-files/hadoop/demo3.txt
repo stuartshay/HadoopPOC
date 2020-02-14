@@ -1,0 +1,11 @@
+REM Demo 3 - Multiple Reducers + Combiner + DistributedCache
+
+hadoop jar %HADOOP_HOME%\share\hadoop\tools\lib\hadoop-streaming-2.7.2.jar ^
+-D mapreduce.job.reduces=4 ^
+-D mapreduce.map.output.compress=true ^
+-files "file:/c:/dotnetcore,file:/c:/refdata" ^
+-mapper "dotnet dotnetcore/mapper.dll" ^
+-reducer "dotnet dotnetcore/reducer.dll" ^
+-combiner "dotnet dotnetcore/combiner.dll" ^
+-input /input/* ^
+-output /output-m4-3

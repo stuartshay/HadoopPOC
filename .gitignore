@@ -1,5 +1,5 @@
-**/*.zip
-
+**/data/*.zip
+**/data/*.csv
 
 
 

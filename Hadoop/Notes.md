@@ -15,7 +15,7 @@ curl -i -X PUT "http://192.168.99.100:50075/webhdfs/v1/tmp/webhdfs/webhdfs-test.
 Make Directory
 
 ```
-curl -i -X PUT "http://192.168.99.100:9870/webhdfs/v1/tmp/webhdfs?user.name=root&op=MKDIRS"
+curl -i -X PUT "http://192.168.99.100:9870/webhdfs/v1/tmp?user.name=root&op=MKDIRS"
 ```
 
 ## Create File

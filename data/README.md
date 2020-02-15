@@ -26,10 +26,9 @@ curl -i -X PUT "http://192.168.99.100:9870/webhdfs/v1/pluto/pluto_20v1.csv?user.
 
 ![](../assets/redirect.png)
 
+Submit File
 
-
-
-
-
-
-
+```
+curl -i -X PUT -T pluto_20v1.csv "http://192.168.99.100:9864/webhdfs/v1/pluto/pluto_20v1.csv?op=CREATE&user.name=root&namenoderpcaddress=namenode:9000&createflag=&createparent=true&overwrite=false"
+```
+![](../assets/filesystem.png)

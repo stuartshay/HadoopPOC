@@ -62,6 +62,18 @@ services:
     env_file:
       - ./hadoop.env
   
+  submit:
+    hostname : submit
+    build: submit/.
+    #image: stuartshay/coredatastore-internal-tools:local-v2
+    environment:
+      TERM_USER: root
+      TERM_PASS: root
+    ports:
+       - 2022:22/tcp
+    stdin_open: true
+    tty: true
+
 volumes:
   hadoop_namenode:
   hadoop_datanode:

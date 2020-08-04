@@ -26,13 +26,14 @@ docker-compose -f docker-compose.yml pull
 docker-compose -f docker-compose.yml up
 ```
 
-## Shutdown
+## Shutdown/Destroy
 
 ```
 cd Hadoop
 docker-compose -f docker-compose.yml down
 
 docker system prune
+docker volume prune
 ```
 
 ### Dashboard

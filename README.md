@@ -42,3 +42,6 @@ http://<dockerhadoop_IP_address>:9870/dfshealth.html#tab-overview
 ```
 
 ![](assets/hadoop.png)
+
+
+## Running with Hue

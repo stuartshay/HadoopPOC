@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+  
   cloudera:
       image: gethue/hue:latest
       hostname: hue
@@ -9,9 +10,12 @@ services:
       ports:
       - "8888:8888"
       volumes:
-        - ./hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
+        - ./hue/conf/hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
       depends_on:
       - "database"
+      networks:
+      - hadoop
+          
   database:
       image: mysql:5.7
       ports:
@@ -19,12 +23,19 @@ services:
       command: --init-file /data/application/init.sql
       volumes:
           - data:/var/lib/mysql
-          - ./init.sql:/data/application/init.sql
+          - ./hue/init.sql:/data/application/init.sql
       environment:
           MYSQL_ROOT_USER: root
           MYSQL_ROOT_PASSWORD: secret
           MYSQL_DATABASE: hue
           MYSQL_USER: root
           MYSQL_PASSWORD: secret
+
+networks:
+ hadoop:
+  external:
+    name: hadoop
+
+    
 volumes:
   data:

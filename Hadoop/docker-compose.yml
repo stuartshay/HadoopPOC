@@ -15,6 +15,8 @@ services:
       - CLUSTER_NAME=test
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop 
 
   datanode:
     hostname : datanode
@@ -29,6 +31,8 @@ services:
       SERVICE_PRECONDITION: "namenode:9870"
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop 
   
   resourcemanager:
     hostname : resourcemanager
@@ -39,6 +43,8 @@ services:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864"
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop 
 
   nodemanager1:
     hostname : nodemanager1
@@ -49,6 +55,8 @@ services:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop 
   
   historyserver:
     hostname : historyserver
@@ -61,20 +69,18 @@ services:
       - hadoop_historyserver:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
+    networks:
+      - hadoop 
   
-  submit:
-    hostname : submit
-    build: submit/.
-    #image: stuartshay/coredatastore-internal-tools:local-v2
-    environment:
-      TERM_USER: root
-      TERM_PASS: root
-    ports:
-       - 2022:22/tcp
-    stdin_open: true
-    tty: true
+networks:
+  hadoop:
+    external:
+      name: hadoop
 
 volumes:
   hadoop_namenode:
   hadoop_datanode:
   hadoop_historyserver:
+  hadoop_conf: null 
+  hive_conf: null
+  hbase_conf: null

@@ -45,4 +45,21 @@ http://<dockerhadoop_IP_address>:9870/dfshealth.html#tab-overview
 ![](assets/hadoop.png)
 
 
-## Running with Hue
+
+## Running with Hue, Impala, Kudu
+
+```
+cd Hadoop
+docker-compose -f docker-compose.yml -f hue/docker-compose.yml -f kudu/docker-compose.yml up
+```
+
+Hue UI
+```
+localhost:8888
+```
+
+
+Kudu UI
+```
+localhost:8050
+```

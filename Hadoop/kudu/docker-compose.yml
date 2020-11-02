@@ -1,0 +1,62 @@
+version: "3.5"
+
+services:
+  kudu-master-1:
+    image: apache/kudu:latest
+    ports:
+      - "7051"
+      - "8051"
+    command: ["master"]
+    environment:
+      - KUDU_MASTERS=kudu-master-1,kudu-master-2,kudu-master-3
+  kudu-master-2:
+    image: apache/kudu:latest
+    ports:
+      - "7051"
+      - "8051"
+    command: ["master"]
+    environment:
+      - KUDU_MASTERS=kudu-master-1,kudu-master-2,kudu-master-3
+  kudu-master-3:
+    image: apache/kudu:latest
+    ports:
+      - "7051"
+      - "8051"
+    command: ["master"]
+    environment:
+      - KUDU_MASTERS=kudu-master-1,kudu-master-2,kudu-master-3
+  kudu-tserver:
+    image: apache/kudu:latest
+    depends_on:
+      - kudu-master-1
+      - kudu-master-2
+      - kudu-master-3
+    ports:
+      - "7050"
+      - "8050"
+    command: ["tserver"]
+    environment:
+      - KUDU_MASTERS=kudu-master-1,kudu-master-2,kudu-master-3
+    deploy:
+      replicas: 3
+
+  kudu-impala:
+    hostname : impala
+    image: apache/kudu:impala-latest
+    container_name: impala
+    command: ["impala"]
+    environment:
+      - KUDU_MASTERS=kudu-master
+    ports:
+      - 21000:21000 
+      - 21050:21050 
+      - 25000:25000 
+      - 25010:25010 
+      - 25020:25020
+    networks:
+      - hadoop
+  
+networks:
+  hadoop:
+    external:
+      name: hadoop

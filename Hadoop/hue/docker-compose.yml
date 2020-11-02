@@ -1,4 +1,4 @@
-version: '3'
+version: "3.5"
 
 services:
   
@@ -18,19 +18,19 @@ services:
           
   database:
       image: mysql:5.7
+      container_name: database
       ports:
-          - "33061:3306"
+          - "3306:3306"
       command: --init-file /data/application/init.sql
       volumes:
           - data:/var/lib/mysql
           - ./hue/init.sql:/data/application/init.sql
       environment:
-          MYSQL_ROOT_USER: root
           MYSQL_ROOT_PASSWORD: secret
           MYSQL_DATABASE: hue
-          MYSQL_USER: root
-          MYSQL_PASSWORD: secret
-
+          MYSQL_USER:  hue
+          MYSQL_PASSWORD: hue
+          
 networks:
  hadoop:
   external:

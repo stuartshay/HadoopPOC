@@ -3,6 +3,7 @@
 FROM ubuntu:18.04
 LABEL description="Hue SQL Assistant - gethue.com"
 
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && apt-get install -y \
   build-essential \
   libkrb5-dev \
@@ -17,7 +18,6 @@ RUN apt-get update -y && apt-get install -y \
   libffi-dev \
   libldap2-dev \
   libpq-dev \
-  iputils-ping \
   python-dev \
   python-setuptools \
   libgmp3-dev \
@@ -25,7 +25,6 @@ RUN apt-get update -y && apt-get install -y \
   software-properties-common \
   curl \
   git \
-  nano \
   rsync \
   sudo \
   maven \
@@ -34,6 +33,8 @@ RUN apt-get update -y && apt-get install -y \
   # openssl \ # Breaks build
   xmlsec1 \
   libxmlsec1-openssl \
+  krb5-config \
+  krb5-user \
   && rm -rf /var/lib/apt/lists/*
 
 ADD . /hue
@@ -64,7 +65,9 @@ RUN ./build/env/bin/pip install \
   flower \
   pyhive \
   gevent \
-  threadloop # Needed for Jaeger
+  # Needed for Jaeger
+  threadloop \
+  thrift-sasl==0.2.1
 
 COPY tools/docker/hue/conf desktop/conf
 COPY tools/docker/hue/startup.sh .
